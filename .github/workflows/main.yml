@@ -1,0 +1,19 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI for pushing code to production repo
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+
+jobs:
+  echo-status:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Testing secret
+        env:
+          COMMIT_MSG: ${{ toJSON(secrets.SECRET_007) }}
+        run: echo "$COMMIT_MSG"
